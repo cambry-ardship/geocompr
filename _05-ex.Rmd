@@ -45,9 +45,9 @@ Using `st_buffer()`, how many points in `nz_height` are within 100 km of Canterb
 
 ```{r 05-ex-e2}
 canterbury = nz[nz$Name == "Canterbury", ]
-cant_buff = st_buffer(canterbury, 100)
+cant_buff = st_buffer(canterbury, 100 * 1000)
 nz_height_near_cant = nz_height[cant_buff, ]
-nrow(nz_height_near_cant) # 75 - 5 more
+nrow(nz_height_near_cant) # 95 - 25 more
 ```
 
 E3. Find the geographic centroid of New Zealand. 
@@ -67,12 +67,12 @@ Hint: you need to use a two-element vector for this transformation.
  
 ```{r 05-ex-e4}
 world_sfc = st_geometry(world)
-world_sfc_mirror = world_sfc * c(1, -1)
+world_sfc_mirror = world_sfc * matrix(c(1, -1))
 plot(world_sfc)
 plot(world_sfc_mirror)
 
 us_states_sfc = st_geometry(us_states)
-us_states_sfc_mirror = us_states_sfc * c(1, -1)
+us_states_sfc_mirror = us_states_sfc * matrix(c(1, -1))
 plot(us_states_sfc)
 plot(us_states_sfc_mirror)
 ## nicer plot
